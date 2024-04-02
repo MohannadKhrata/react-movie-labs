@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -48,6 +49,11 @@ export default function MovieCard(props) {
         </IconButton>
         <Button variant="outlined" size="medium" color="primary">
           More Info ...
+          <Link to={`/movies/${movie.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            More Info ...
+          </Button>
+        </Link>
         </Button>
       </CardActions>
     </Card>
