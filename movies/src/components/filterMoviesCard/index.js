@@ -1,5 +1,4 @@
-import React, {useState, useEffect}  from "react";
-
+import React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -21,35 +20,12 @@ const formControl =
 
 export default function FilterMoviesCard(props) {
 
-  const [genres, setGenres] = useState([{ id: '0', name: "All" }])
+  const genres = [
+    {id: 1, name: "Animation"},
+    {id: 2, name: "Comedy"},
+    {id: 3, name: "Thriller"}
+  ]
 
-  useEffect(() => {
-    fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
-        process.env.REACT_APP_TMDB_KEY
-    )
-      .then(res => res.json())
-      .then(json => {
-        // console.log(json.genres) 
-        return json.genres
-      })
-      .then(apiGenres => {
-        setGenres([genres[0], ...apiGenres]);
-      });
-      // eslint-disable-next-line
-  }, []);
-
-  const handleChange = (e, type, value) => {
-    e.preventDefault()
-    // Completed later
-  };
-  const handleTextChange = e => {
-    handleChange(e, "name", e.target.value)
-  }
-  const handleGenreChange = e => {
-    handleChange(e, "genre", e.target.value)
-  };
-  
   return (
     <Card 
       sx={{
@@ -63,23 +39,18 @@ export default function FilterMoviesCard(props) {
           Filter the movies.
         </Typography>
         <TextField
-      sx={{...formControl}}
-      id="filled-search"
-      label="Search field"
-      type="search"
-      variant="filled"
-      value={props.titleFilter}
-      onChange={handleTextChange}
-    />
+          sx={{...formControl}}
+          id="filled-search"
+          label="Search field"
+          type="search"
+          variant="filled"
+        />
         <FormControl sx={{...formControl}}>
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select
-    labelId="genre-label"
-    id="genre-select"
-    defaultValue=""
-    value={props.genreFilter}
-    onChange={handleGenreChange}
-  >
+            labelId="genre-label"
+            id="genre-select"
+          >
             {genres.map((genre) => {
               return (
                 <MenuItem key={genre.id} value={genre.id}>
