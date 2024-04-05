@@ -26,8 +26,8 @@ const SiteHeader = ({ history }) => {
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
-    { label: "Option 3", path: "/" },
-    { label: "Option 4", path: "/" },
+    { label: "To Watch", path: "/movies/watchlist" },
+    { label: "Upcoming", path: "/movies/upcoming" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -40,7 +40,7 @@ const SiteHeader = ({ history }) => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" style={{ backgroundColor: '#1976D2' }}> 
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
