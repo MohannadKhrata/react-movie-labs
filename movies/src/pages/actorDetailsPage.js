@@ -1,17 +1,17 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
-import MovieDetails from "../components/movieDetails/";
-import PageTemplate from "../components/templateMoviePage";
-import { getMovie } from '../api/tmdb-api'
+import ActorDetails from "../components/actorDetails/";
+import PageTemplate from "../components/templateActorPage";
+import { getActor } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 // import useMovie from "../hooks/useMovie";   Redundant
 
-const MoviePage = (props) => {
+const ActorPage = (props) => {
   const { id } = useParams();
   const { data: movie, error, isLoading, isError } = useQuery(
-    ["movie", { id: id }],
-    getMovie
+    ["actor", { id: id }],
+    getActor
   );
 
   if (isLoading) {
@@ -27,7 +27,7 @@ const MoviePage = (props) => {
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
+            <ActorDetails movie={movie} />
           </PageTemplate>
         </>
       ) : (
@@ -37,4 +37,4 @@ const MoviePage = (props) => {
   );
 };
 
-export default MoviePage;
+export default ActorPage;
