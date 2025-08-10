@@ -20,6 +20,7 @@ export default function MovieCard({ movie }) {
         title={movie.title}
         titleTypographyProps={{ noWrap: true }}
       />
+
       <CardMedia
         component="img"
         sx={{ height: 500, objectFit: "cover" }}
@@ -30,20 +31,22 @@ export default function MovieCard({ movie }) {
         }
         alt={movie.title}
       />
+
       <CardContent>
         <Grid container spacing={1}>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" /> {movie.release_date}
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" /> {movie.vote_average}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
+
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites" onClick={() => {}}>
           <FavoriteIcon color="primary" fontSize="large" />
