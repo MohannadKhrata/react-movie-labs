@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router"; // NEW: Link import
+import { Link } from "react-router"; // Link import
+import Avatar from "@mui/material/Avatar"; // NEW: Avatar import
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -14,12 +15,27 @@ import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from "../../images/film-poster-placeholder.png";
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie, selectFavorite }) {
+  const handleAddToFavorite = (e) => {
+    e.preventDefault();
+    selectFavorite(movie.id);
+  };
+
   return (
     <Card>
       <CardHeader
-        title={movie.title}
-        titleTypographyProps={{ noWrap: true }}
+        avatar={
+          movie.favorite ? (
+            <Avatar sx={{ backgroundColor: "red" }}>
+              <FavoriteIcon />
+            </Avatar>
+          ) : null
+        }
+        title={
+          <Typography variant="h5" component="p">
+            {movie.title}{" "}
+          </Typography>
+        }
       />
 
       <CardMedia
@@ -49,7 +65,10 @@ export default function MovieCard({ movie }) {
       </CardContent>
 
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={() => {}}>
+        <IconButton
+          aria-label="add to favorites"
+          onClick={handleAddToFavorite}
+        >
           <FavoriteIcon color="primary" fontSize="large" />
         </IconButton>
         <Link to={`/movies/${movie.id}`}>
