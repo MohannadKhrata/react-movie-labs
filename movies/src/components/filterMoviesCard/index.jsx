@@ -10,6 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from "../../images/pexels-dziana-hasanbekava-5480827.jpg";
+import { getGenres } from "../../api/tmdb-api"; // NEW
 
 const formControl = {
   margin: 1,
@@ -21,21 +22,12 @@ export default function FilterMoviesCard(props) {
   // genres state (starts with "All")
   const [genres, setGenres] = useState([{ id: "0", name: "All" }]);
 
-  // fetch genres from TMDB
+  // fetch genres from TMDB via helper
   useEffect(() => {
-    fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
-        import.meta.env.VITE_TMDB_KEY
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        // console.log(json.genres)
-        return json.genres;
-      })
-      .then((apiGenres) => {
-        setGenres([genres[0], ...apiGenres]);
-      });
-    // eslint-disable-next-line
+    getGenres().then((allGenres) => {
+      setGenres([genres[0], ...allGenres]);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // handlers
