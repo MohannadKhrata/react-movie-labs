@@ -41,11 +41,13 @@ export default function FilterMoviesCard(props) {
   // handlers
   const handleChange = (e, type, value) => {
     e.preventDefault();
-    // Completed later
+    props.onUserInput(type, value); // NEW: notify parent
   };
+
   const handleTextChange = (e) => {
     handleChange(e, "name", e.target.value);
   };
+
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
   };
