@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router"; // Link import
-import Avatar from "@mui/material/Avatar"; // NEW: Avatar import
+import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -14,11 +14,20 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from "../../images/film-poster-placeholder.png";
+import { MoviesContext } from "../../contexts/moviesContext";
 
-export default function MovieCard({ movie, selectFavorite }) {
+export default function MovieCard({ movie }) {
+  const { favorites, addToFavorites } = useContext(MoviesContext);
+
+  if (favorites.find((id) => id === movie.id)) {
+    movie.favorite = true;
+  } else {
+    movie.favorite = false;
+  }
+
   const handleAddToFavorite = (e) => {
     e.preventDefault();
-    selectFavorite(movie.id);
+    addToFavorites(movie);
   };
 
   return (
