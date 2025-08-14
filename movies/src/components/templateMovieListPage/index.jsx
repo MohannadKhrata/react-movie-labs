@@ -4,7 +4,11 @@ import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 
+<<<<<<< HEAD
 function MovieListPageTemplate({ movies, title, action }) {
+=======
+function MovieListPageTemplate({ movies, title, selectFavorite }) {
+>>>>>>> a17dccd5a0c7b98a9cf9c4ccd2aaa0516baff881
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
@@ -39,7 +43,11 @@ function MovieListPageTemplate({ movies, title, action }) {
             genreFilter={genreFilter}
           />
         </Grid>
+<<<<<<< HEAD
         <MovieList action={action} movies={displayedMovies}></MovieList>
+=======
+        <MovieList selectFavorite={selectFavorite} movies={displayedMovies}></MovieList>
+>>>>>>> a17dccd5a0c7b98a9cf9c4ccd2aaa0516baff881
       </Grid>
     </Grid>
   );
